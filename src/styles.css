@@ -1,0 +1,51 @@
+:root {
+  --bg: #0d1218; --panel: #151c24; --line: #263140; --text: #e7edf3; --muted: #8b9aab;
+  --cyan: #5cc8ff; --amber: #ffb547; --red: #ff5a5f; --ok: #6fd6c0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+.app { max-width: 1180px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { margin: 0 0 8px; font-size: 1.6rem; letter-spacing: -0.01em; }
+h2 { margin: 0 0 10px; font-size: 1rem; font-weight: 600; }
+.notice { margin: 0 0 20px; padding: 10px 14px; border-left: 3px solid var(--amber); background: #1d1a12; color: #e9d9b8; font-size: .9rem; max-width: 75ch; }
+.layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
+.frame { position: relative; aspect-ratio: 4 / 3; background: #05080b; border: 2px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color .2s; }
+.frame-alert { border-color: var(--red); box-shadow: 0 0 0 4px #ff5a5f33; }
+video, canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.hidden { display: none; }
+.placeholder, .overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--muted); }
+.overlay { background: #05080bcc; color: var(--text); display: flex; gap: 10px; align-items: center; justify-content: center; }
+.err { color: #ff9a9d; }
+.banner { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 16px; background: var(--red); color: #1a0204; font-weight: 700; text-align: center; }
+.spinner { width: 18px; height: 18px; border: 3px solid var(--line); border-top-color: var(--cyan); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+button { font: inherit; padding: 10px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; min-height: 44px; }
+button:hover:not(:disabled) { border-color: var(--cyan); }
+button.primary { background: var(--cyan); color: #04202e; border-color: var(--cyan); font-weight: 600; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.side { display: grid; gap: 14px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.status { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); font-size: 1.15rem; font-weight: 600; }
+.status small { flex-basis: 100%; font-weight: 400; color: var(--muted); font-size: .8rem; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--muted); }
+.s-ok .dot { background: var(--ok); } .s-caution .dot { background: var(--amber); }
+.s-alert { border-color: var(--red); } .s-alert .dot { background: var(--red); }
+.gauge { position: relative; height: 14px; background: #0a0f14; border-radius: 7px; border: 1px solid var(--line); }
+.gauge i { position: absolute; inset: 0 auto 0 0; background: var(--cyan); border-radius: 7px; transition: width .1s; }
+.gauge i.low { background: var(--amber); }
+.gauge b { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--text); }
+.meta { margin: 10px 0 0; color: var(--muted); font-size: .85rem; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; font-size: .9rem; }
+dt { color: var(--muted); } dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.history { margin: 0; padding-left: 18px; max-height: 160px; overflow: auto; font-size: .9rem; }
+summary { cursor: pointer; font-weight: 600; }
+details label { display: block; margin-top: 12px; font-size: .85rem; color: var(--muted); }
+details output { float: right; color: var(--text); }
+details input { width: 100%; margin-top: 6px; accent-color: var(--cyan); }
+details button { margin-top: 14px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } h1 { font-size: 1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } * { transition: none !important; } }

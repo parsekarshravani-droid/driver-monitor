@@ -1,0 +1,24 @@
+{
+  "name": "driver-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "models": "node scripts/copy-models.mjs",
+    "predev": "node scripts/copy-models.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/copy-models.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@vladmandic/face-api": "^1.7.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
